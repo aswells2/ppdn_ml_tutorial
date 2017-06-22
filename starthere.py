@@ -14,7 +14,7 @@ style.use('ggplot')
 
 
 
-df = quandl.get('WIKI/GOOGL')
+df = quandl.get('WIKI/AMD')
 
 #print(df.tail())
 
@@ -37,7 +37,7 @@ forecast_col = 'Adj. Close' #can change the forecast_col to be what ever label y
 
 df.fillna(-99999, inplace=True) #need to replace NaN data in ML. -99999 will be treated as outlier
 
-forecast_out = int(math.ceil(0.1*len(df))) #math.ceil gets to ceiling which means it rounds all decimals up to nearest whole number
+forecast_out = int(math.ceil(0.0025*len(df))) #math.ceil gets to ceiling which means it rounds all decimals up to nearest whole number
 ### this equation allows us to change the number of days out we are predicting.
 ###In this case we are setting the number of days we are predicint out to 10% of
 ###the total number of data rows in our dataframe
@@ -49,7 +49,7 @@ df['label'] = df[forecast_col].shift(-forecast_out)
 ###predicted out some number of days (defined by forecast_out
 
 #print(df.head())
-X = np.array(df.drop(['label', 'Adj. Close'],1))
+X = np.array(df.drop(['label'],1))
 X = preprocessing.scale(X)
 X_lately = X[-forecast_out:]
 X=X[:-forecast_out]
@@ -75,7 +75,7 @@ accuracy = clf.score(X_test,y_test)
 forecast_set = clf.predict(X_lately)
 #print(accuracy)
 
-#print(forecast_set, accuracy, forecast_out)
+print(forecast_set, accuracy, forecast_out)
 df['Forecast'] = np.nan
 
 
