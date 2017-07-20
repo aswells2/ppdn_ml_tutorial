@@ -51,7 +51,7 @@ for i in range(len(X)):
 Basically, for each coordinate (len(X)), print and label the "ith" coordinate on the plot
 '''
 
-plt.scatter(centroids[:,0],centroids[:,1], marker = "x", s=150, linewidths = 5, zorder = 10)
+plt.scatter(centroids[:,0],centroids[:,1], marker = "*", s=150, linewidths = 5, zorder = 10)
 
 plt.show()
 

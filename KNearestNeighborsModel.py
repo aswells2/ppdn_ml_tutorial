@@ -80,5 +80,5 @@ for i in range(25):
             total += 1
     #print('Accuracy:', correct/total)
     accuracies.append(correct/total)
-print(sum(accuracies/len(accuracies)))
+#print(sum(accuracies/len(accuracies)))
           

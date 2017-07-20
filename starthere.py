@@ -14,7 +14,7 @@ style.use('ggplot')
 
 
 
-df = quandl.get('WIKI/AMD')
+df = quandl.get('WIKI/CAT')
 
 #print(df.tail())
 
@@ -37,7 +37,7 @@ forecast_col = 'Adj. Close' #can change the forecast_col to be what ever label y
 
 df.fillna(-99999, inplace=True) #need to replace NaN data in ML. -99999 will be treated as outlier
 
-forecast_out = int(math.ceil(0.0025*len(df))) #math.ceil gets to ceiling which means it rounds all decimals up to nearest whole number
+forecast_out = int(math.ceil(0.0001*len(df))) #math.ceil gets to ceiling which means it rounds all decimals up to nearest whole number
 ### this equation allows us to change the number of days out we are predicting.
 ###In this case we are setting the number of days we are predicint out to 10% of
 ###the total number of data rows in our dataframe
@@ -68,8 +68,8 @@ with open('linearregression.pickle','wb') as f:
     pickle.dump(clf, f)
 
 
-pickle_in = open('linearregression.pickle','rb')
-clf = pickle.load(pickle_in)
+##pickle_in = open('linearregression.pickle','rb')
+##clf = pickle.load(pickle_in)
 
 accuracy = clf.score(X_test,y_test)
 forecast_set = clf.predict(X_lately)
