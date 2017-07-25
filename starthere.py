@@ -14,7 +14,7 @@ style.use('ggplot')
 
 
 
-df = quandl.get('WIKI/CAT')
+df = quandl.get('WIKI/GOOG')
 
 #print(df.tail())
 
